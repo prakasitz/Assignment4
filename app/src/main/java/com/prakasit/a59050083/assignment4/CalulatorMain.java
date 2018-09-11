@@ -79,19 +79,21 @@ public class CalulatorMain extends AppCompatActivity implements
             if(str == "") { //chk ตัวแรกต้องไม่เป็น 0 ไม่งั้นมัน error
                 textMain.setText("");
             } else { //ไม่เป็น ""
-                for(int i = 0; i < str.length(); i++) { //เช็กแต่ละตัวว่า ตัวที่ติดกันจากซ้ายไปขวา เป็น เครื่องหมายหรือไม่ ถ้าเป็น ให้ error
-                    if( str.charAt(i) == '+' || str.charAt(i) == '-' || str.charAt(i) == '*' || str.charAt(i) == '/' || str.charAt(i) == '.') {
-                        if(i+1 < str.length()) {
-                            if(str.charAt(i+1) == '+' || str.charAt(i+1) == '-' || str.charAt(i+1) == '*' || str.charAt(i+1) == '/' || str.charAt(i+1) == '.') {
-                                str = "Invalid+";
-                                textMain.setText(str);
-                                break;
-                            }
+                for(int i = 0; i < str.length() ; i++) { //เช็กแต่ละตัวว่า ตัวที่ติดกันจากซ้ายไปขวา เป็น เครื่องหมายหรือไม่ ถ้าเป็น ให้ error
+                    if(!(str.charAt(i) >= '0' && str.charAt(i) <= '9')) {
+                        if(i+1 < str.length() && !(str.charAt(i+1) >= '0' && str.charAt(i+1) <= '9')) {
+                            String errorTxt = Character.toString(str.charAt(i+1));
+                            textMain.setText("Invalid:" + errorTxt);
+                            str = "";
+                            break;
+                        } else if(i == str.length()) { //ถ้า i เป็นตัวสุดท้าย
+                            textMain.setText("Invalid:Subtraction");
+                            str = "";
                         }
                     }
                 } //end for
 
-                if(str != "Invalid+") { //ถ้า ไม่ error ให้เอาค่าใส่ฟังชั่น
+                if(textMain.getText().toString() != "Invalid+") { //ถ้า ไม่ error ให้เอาค่าใส่ฟังชั่น
                     double a = eval(str);
                     textMain.setText(String.valueOf(a));
                 }
