@@ -1,5 +1,6 @@
 package com.prakasit.a59050083.assignment4;
 
+import android.support.annotation.MainThread;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
@@ -20,7 +21,7 @@ public class CalulatorMain extends AppCompatActivity implements
             btnMinus, btnMutiple, btnDevide;
     TextView textMain, textSub;
     int cnt = 1;
-
+    private String str = "";
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         getMenuInflater().inflate(R.menu.menu_main, menu);
@@ -37,9 +38,11 @@ public class CalulatorMain extends AppCompatActivity implements
                     if(cnt%2 == 0) {
                         setContentView(R.layout.activity_calulator_main_1);
                         a();
+                        textMain.setText(str);
                     } else {
                         setContentView(R.layout.activity_calulator_main);
                         a();
+                        textMain.setText(str);
                     }
                 }
                 break;
@@ -102,7 +105,7 @@ public class CalulatorMain extends AppCompatActivity implements
         textSub = findViewById(R.id.SubText);
     }
 
-    private String str = "";
+
 
     @Override
     public void onClick(View v) {
