@@ -31,7 +31,7 @@ public class CalulatorMain extends AppCompatActivity implements
     public boolean onOptionsItemSelected(MenuItem item) {
         cnt++;
         int idOfItem = item.getItemId();
-        switch (idOfItem){
+        switch (idOfItem){ //ส่วนของการเปลี่ยน Theme
             case R.id.menuItem1: {
                 Toast.makeText(this, "Item1 clicked:" + cnt,
                         Toast.LENGTH_LONG).show();
